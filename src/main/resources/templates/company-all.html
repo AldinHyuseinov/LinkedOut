@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LinkedOut</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<div th:replace="fragments/navbar">Navbar</div>
+
+<main>
+    <div class="container">
+        <h2 class="text-center text-dark bg-light rounded-circle mt-5">All companies</h2>
+        <hr style="width: 50%"/>
+        <div class='row mb-4 d-flex justify-content-around'>
+
+            <div th:each="c : ${companyInfos}" class="col-md-4 d-flex flex-column bg-text mb-3 rounded-circle">
+                <h2 th:text="'Company: ' + ${c.name}"></h2>
+                <h4 th:text="'Town: ' + ${c.town}"></h4>
+                <h4 th:text="'Description: ' + ${#strings.substring(c.description,0,5)}"></h4>
+                <h4><a class="btn-block" th:href="@{/companies/company-details/{company-name}(company-name=${c.name})}">Detail
+                    info</a></h4>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer id="footer">
+    <div class="container-fluid bg-transparent rounded">
+        <div class="text-white p-2 text-center">&copy; Spring Team 2020. All rights reserved.</div>
+    </div>
+</footer>
+</body>
+</html>
